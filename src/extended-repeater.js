@@ -16,7 +16,7 @@ module.exports = function repeater(str, options = {}) {
     }
 
     let result = (string + tail + separator).repeat(repeatTimes).slice(0, -separator.length);
-    console.log(result);
+    // console.log(result);
     return result;
 };
   
