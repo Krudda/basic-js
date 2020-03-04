@@ -10,11 +10,27 @@ module.exports = function transform(arr) {
                     case '--discard-next':
                         //  console.log(`На индексе ${index} попался элемент ${current}`);
                         //  console.log(arr);
-                        (index+1 <= array.length) ? array.splice(index+1, 1) : false;
-                        // console.log(arr);
-                        array.splice(index, 1, 'DELETED');
-                        // console.log(arr, 'Конец');
-                        break; 
+                        if (array[index + 2] !== '--double-prev' && index + 2 <= array.length) {
+                            // console.log(`1 На индексе ${index} попался элемент ${current}, и на позиции ${index + 2} стоит элемент ${array[index + 2]}`);
+                            (index+1 <= array.length) ? array.splice(index+1, 1) : false;
+                            // console.log(arr);
+                            array.splice(index, 1, 'DELETED');
+                            // console.log(arr, 'Конец');
+                            break; 
+                       }
+                       else if (array[index + 2] == '--double-prev') {
+                            // console.log(`2 На индексе ${index} попался элемент ${current}, и на позиции ${index + 2} стоит элемент ${array[index + 2]}`);
+                            array.splice(index, 1, 'DELETED');
+                            array.splice(index+2, 1, 'DELETED');
+                            // console.log(arr, 'Конец');
+                            break;
+                       }
+                       else if (array[index + 2] !== '--double-prev' && index + 2 >= array.length) {
+                            // console.log(`3 На индексе ${index} попался элемент ${current}, и на позиции ${index + 2} стоит элемент ${array[index + 2]}`);
+                            array.splice(index, 1, 'DELETED');
+                        //    console.log(arr, 'Конец');
+                            break;
+                       }
 
                     case '--discard-prev': 
                         //  console.log(`На индексе ${index} попался элемент ${current}`);
@@ -22,7 +38,7 @@ module.exports = function transform(arr) {
                         if (index == 0) {
                             array.splice(index, 1, 'DELETED');
                         }
-                        for (let j = 1; j <= 3; j++) {
+                        for (let j = 1; j <= 6; j++) {
                             if (array[index-j] == 'DELETED') {
                                 continue;
                             } else if(index - j < 0) {

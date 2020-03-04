@@ -11,7 +11,7 @@ const chainMaker = {
       element = value + '';
     }
     this.chainArr.push( '( ' + element + ' )' );
-    console.log(this.chainArr);
+    // console.log(this.chainArr);
     return this;
   },
   removeLink(position) {
