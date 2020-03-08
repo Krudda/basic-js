@@ -1,21 +1,27 @@
 module.exports = class DepthCalculator {
 
-    calculateDepth(arr) {
-        let count = 1;
+    // constructor() {
+    //     this.count = 0;
+    // }
 
+        // makeCounter() {
+        //     return function() {
+        //         return count++;
+        //     };
+        // };
+        
+        // counter = makeCounter();
+    
+   
+
+    calculateDepth(arr) {
+        let count = 0;
         arr.forEach(element => {
-            if (Array.isArray(element) !== true) {
- //                 console.log(element, 'It is NOT array!!!');
-                 return count;
-             }
-             else {
-                //  console.log('It is an Arraaaaayyyyy!!!!!!');
- //                 hzObj[element] = count + 1;
- //                 console.log('count: ', count);
- //                 console.log('hzObj: ', hzObj);
-                 return count = count + this.calculateDepth(element);
-             } 
-         });
-         return count;
+            if (Array.isArray(element)) {
+                count = Math.max(this.calculateDepth(element), count);
+            }
+        })
+        // return this.count + 1;
+        return count + 1;
     }
-};
+}
